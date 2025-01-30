@@ -14,7 +14,7 @@ This repository contains a Selenium script in Java to automate the testing of st
 
 1. *Clone the Repository*:
     bash
-    git clone https://github.com/your-username/your-repository.git
+    git clone (https://github.com/gokuiyer/YahooTest.git)
     cd your-repository
     
 
