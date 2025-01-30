@@ -19,7 +19,7 @@ public class HomePage {
 		driver.manage().window().maximize();
 		driver.get("https://finance.yahoo.com/");
 
-		// Create an instance of WebDriverWait with a timeout of 10 seconds
+		// Create an instance of WebDriverWait with a timeout of 5 seconds
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		// Wait until a specific element is visible on the page
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ybar-sbq")));
@@ -42,9 +42,9 @@ public class HomePage {
 			searchBox.clear();
 			searchBox.sendKeys(stockSymbol);
 			WebElement firstSuggestion = waitForElement(driver, By.xpath("//li[contains(@title,'Tesla, Inc.')]"),
-					Duration.ofSeconds(8));
+					Duration.ofSeconds(2));
 			WebElement textVerify = waitForElement(driver, By.xpath("//li[contains(@title,'Tesla, Inc.')]//div"),
-					Duration.ofSeconds(8));
+					Duration.ofSeconds(2));
 			if (firstSuggestion != null && textVerify.getText().contains(stockSymbol.toUpperCase())) {
 				firstSuggestion.click();
 				return true;
@@ -60,7 +60,7 @@ public class HomePage {
 
 	public static boolean verifyStockPrice(WebDriver driver, double minPrice) {
 		WebElement stockPriceElement = waitForElement(driver, By.xpath("//span[@data-testid='qsp-price']"),
-				Duration.ofSeconds(30));
+				Duration.ofSeconds(10));
 		if (stockPriceElement != null) {
 			try {
 				double stockPrice = Double.parseDouble(stockPriceElement.getText().replace(",", ""));
